@@ -1,0 +1,36 @@
+[core]
+	excludesfile=~/.gitignore
+	editor = nvim
+[alias]
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
+	st = status -s
+[user]
+	email = tim.behnken@nbcuni.com
+	name = Tim Behnken
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[column]
+	ui = auto
+[branch]
+	sort = -committerdate
+[tag]
+	sort = -v:refname
+[init]
+	branch = main
+[diff]
+	# meyers, patience, histogram
+	algorigth = histogram
+	colorMoved = plain
+[push]
+	autoSetupRemote = true
+	followTags = true
+[fetch]
+	prune = true
+	pruneTags = true
+[help]
+	autocorrect = prompt
+[pull]
+	rebase = true
