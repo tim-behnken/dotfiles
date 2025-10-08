@@ -5,6 +5,10 @@ return {
       { "github/copilot.vim" }, -- or zbirenbaum/copilot.lua
       { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
     },
+    config = function()
+      vim.api.nvim_set_keymap("n", "<leader>ac", ":CopilotChatClose<CR>", { noremap = true, silent = true })
+      vim.api.nvim_set_keymap("n", "<leader>am", ":CopilotChat<CR>", { noremap = true, silent = true })
+    end,
     build = "make tiktoken", -- Only on MacOS or Linux
     opts = {
       -- See Configuration section for options

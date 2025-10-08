@@ -1,4 +1,4 @@
-command = /opt/homebrew/bin/nu
+command = "/usr/bin/env NU_CONFIG_DIR=\"$HOME/.config/nushell/\" /opt/homebrew/bin/nu"
 maximize = true
 working-directory = home
 shell-integration = zsh
@@ -9,3 +9,7 @@ font-size = 20
 theme = catppuccin-mocha.conf
 keybind = super+k=next_tab
 keybind = super+j=previous_tab
+keybind = super+ctrl+h=resize_split:left,25
+keybind = super+ctrl+j=resize_split:down,25
+keybind = super+ctrl+k=resize_split:up,25
+keybind = super+ctrl+l=resize_split:right,25

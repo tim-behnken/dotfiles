@@ -13,8 +13,6 @@ vim.g.have_nerd_font = true
 -- Python provider
 vim.g.python3_host_prog = vim.fn.expand("~/.config/nvim/env/bin/python")
 
-vim.g.copilot_no_tab_map = true
-
 require("custom.opts")
 require("custom.keymaps")
 require("custom.autocommands")

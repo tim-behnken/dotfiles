@@ -5,10 +5,6 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 -- Diagnostic keymaps
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
--- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
--- or just use <C-\><C-n> to exit terminal mode
-vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
-
 -- Use relative line numbers
 vim.api.nvim_create_user_command("ToggleLineNumbers", function()
   if vim.opt.number:get() then
@@ -27,7 +23,7 @@ vim.api.nvim_create_user_command("ToggleRelativeLineNumbers", function()
   end
 end, {})
 
-vim.api.nvim_create_user_command("TelescopeSearchFunctions", function()
+vim.api.nvim_create_user_command("TelescopeSearchDocumentFunctions", function()
   require("telescope.builtin").lsp_document_symbols({
     symbols = {
       "Function",
@@ -35,6 +31,15 @@ vim.api.nvim_create_user_command("TelescopeSearchFunctions", function()
     },
   })
 end, { desc = "List functions in current file in telescope" })
+
+vim.api.nvim_create_user_command("TelescopeSearchWorkspaceFunctions", function()
+  require("telescope.builtin").lsp_workspace_symbols({
+    symbols = {
+      "Function",
+      "Method",
+    },
+  })
+end, { desc = "List functions in workspace in telescope" })
 
 -- LSP configs
 
@@ -65,15 +70,6 @@ vim.keymap.set("n", "N", "<cmd>cnext<CR>")
 vim.keymap.set("n", "P", "<cmd>cprev<CR>")
 vim.keymap.set("n", "<C-S-q>", "<cmd>cclose<CR>")
 
--- Copilot chat
-vim.keymap.set("n", "cco", "<cmd>CopilotChatOpen<CR>", { desc = "Open Copilot chat" })
-vim.keymap.set("n", "ccc", "<cmd>CopilotChatClose<CR>", { desc = "Close Copilot chat" })
-vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("\\<CR>")', { expr = true, silent = true })
--- -- hop
--- vim.keymap.set("n", "<leader>w", "<cmd>HopWord<CR>", { desc = "Hop to word" })
--- vim.keymap.set("n", "<leader>l", "<cmd>HopLine<CR>", { desc = "Hop to line" })
--- vim.keymap.set("n", "<leader>c", "<cmd>HopChar2<CR>", { desc = "Hop to char" })
-
 -- lsp
 vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { desc = "Go to definition" })
 vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { desc = "Go to declaration" })
@@ -86,7 +82,13 @@ vim.keymap.set("n", "Q", "<cmd>Telescope cmdline<cr>", { desc = "Cmdline" })
 vim.keymap.set("n", ":", "<cmd>Telescope cmdline<cr>", { desc = "Cmdline" })
 
 -- telescope function search
-vim.keymap.set("n", "<leader>sm", "<cmd>TelescopeSearchFunctions<CR>", { desc = "Telescope function search" })
+vim.keymap.set("n", "<leader>sm", "<cmd>TelescopeSearchDocumentFunctions<CR>", { desc = "[S]earch document [m]ethods" })
+vim.keymap.set(
+  "n",
+  "<leader>sM",
+  "<cmd>TelescopeSearchWorkspaceFunctions<CR>",
+  { desc = "[S]earch workspace [M]ethods" }
+)
 
 -- -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
 -- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
