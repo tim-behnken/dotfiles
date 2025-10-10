@@ -21,9 +21,6 @@ $env.config.buffer_editor = "/opt/homebrew/bin/nvim"
 # Set vim mode
 $env.config.edit_mode = "vi"
 
-# carapace
-$env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
-
 # path
 $env.PATH = ($env.PATH | append "/opt/homebrew/bin")
 $env.PATH = ($env.PATH | append "/opt/homebrew/sbin")
@@ -40,8 +37,10 @@ $env.PATH = ($env.PATH | append "~/.nvm/versions/node/v22.14.0/bin")
 
 $env.CLANG_PATH = "/usr/bin/clang"
 
-mkdir ~/.cache/carapace
-carapace _carapace nushell | save --force ~/.cache/carapace/init.nu
+# carapace
+$env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
+mkdir $"($nu.cache-dir)"
+carapace _carapace nushell | save --force $"($nu.cache-dir)/carapace.nu"
 
 $env._ZO_ECHO = "1" # optional
 zoxide init nushell | save -f ~/.zoxide.nu
