@@ -18,7 +18,7 @@
 #     config nu --doc | nu-highlight | less -R
 
 # carapace
-source ~/.cache/carapace/init.nu
+source  ~/Library/Caches/nushell/carapace.nu
 
 mkdir ($nu.data-dir | path join "vendor/autoload")
 
