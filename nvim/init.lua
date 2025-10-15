@@ -52,4 +52,13 @@ vim.lsp.enable("gopls")
 vim.lsp.enable("pyright")
 vim.lsp.enable("bash-language-server")
 
+-- line number default
+vim.api.nvim_set_hl(0, "LineNr", { fg = "#467aab" })
+-- current line number
+vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#FFA500" })
+
+-- relative line numbers above the cursor
+vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#0000FF" })
+-- relative line numbers below the cursor
+vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#00FF00" })
 -- vim: ts=2 sts=2 sw=2 et
